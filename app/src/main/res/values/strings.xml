@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Generator</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="auth_failed">Authentication error, Please enter a valid email and password or sign up</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_link_to_login">Already registered. Login !!</string>
+    <string name="btn_sign_up">Sign Up !!</string>
+    <string name="err_msg_email">Enter a valid email.</string>
+    <string name="err_msg_required">Required !!</string>
+    <string name="err_msg_password">Enter a valid password with min 6 characters.</string>
+    <string name="btn_link_to_signup">Don\'t have an account, Signup !!</string>
+    <string name="title_activity_user">UserActivity</string>
+    <string name="hello">Hello: </string>
+    <string name="btn_logout">Log Out </string>
+    <string name="btn_goto_list">Check List </string>
+    <string name="btn_submit">Search </string>
+    <string name="enter_listItem_text">Enter Item !!</string>
+    <string name="gender_label">Pick Gender</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+</resources>
