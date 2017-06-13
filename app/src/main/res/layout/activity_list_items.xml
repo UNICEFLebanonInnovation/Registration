@@ -21,13 +21,13 @@
         tools:context="com.androidtutorialpoint.firebasegrocerylistapp.ListItemsActivity"
         tools:showIn="@layout/activity_list_items">
 
-        <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        <android.support.v7.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/listItem_recycler_view"
             android:scrollbars="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
