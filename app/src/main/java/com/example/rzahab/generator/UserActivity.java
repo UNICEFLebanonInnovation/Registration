@@ -79,8 +79,8 @@ public class UserActivity extends AppCompatActivity implements Serializable {
         } else {
 
             HashMap<String, String> userData = getUserData();
-            String gender_search = userData.get("gender");
-            String dob_search = "22071989";//userData.get("dob");
+            final String gender_search = userData.get("gender");
+            final String dob_search = "22071989";//userData.get("dob");
 
             FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -117,6 +117,8 @@ public class UserActivity extends AppCompatActivity implements Serializable {
                         app.setSuggestedUsers(users_suggested);
 
                         Intent i = new Intent(UserActivity.this, ListSuggestedActivity.class);
+                        i.putExtra("gender", gender_search);
+                        i.putExtra("dob", dob_search);
                         startActivity(i);
                         finish();
                     } else {

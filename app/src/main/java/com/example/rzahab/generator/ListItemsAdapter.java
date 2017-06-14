@@ -24,7 +24,7 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsHolder> {
     @Override
     public ListItemsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(currentActivity);
-        View view = layoutInflater.inflate(R.layout.category_list_item_1, parent, false);
+        View view = layoutInflater.inflate(R.layout.suggested_list_item, parent, false);
         return new ListItemsHolder(view);
 
     }

@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,8 +34,16 @@ public class ListSuggestedActivity extends AppCompatActivity {
 
         app = ((Generator) this.getApplication());
         mListItemsRecyclerView = (RecyclerView) findViewById(R.id.listItem_recycler_view);
-        mListItemsRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getResources()));
+        // mListItemsRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getResources()));
         mListItemsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        Bundle extras = getIntent().getExtras();
+
+        String gender = extras.getString("gender");
+        String dob = extras.getString("dob");
+
+        TextView filterTextView = (TextView) findViewById(R.id.filterTextView);
+        filterTextView.setText("Suggested " + gender + " users, born on: " + dob);
 
         updateUI(app.getSuggestedUsers());
 
