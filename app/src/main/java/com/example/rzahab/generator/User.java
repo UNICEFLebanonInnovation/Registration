@@ -1,75 +1,80 @@
 package com.example.rzahab.generator;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.text.TextUtils;
+import android.util.Log;
+
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Created by Rzahab on 5/31/2017.
+ * Created by Rzahab on 6/16/2017.
  */
 
-public class User implements Parcelable {
-    private String email, password;
+public class User {
+    String first_name, father_name, last_name, mother_name, name_equiv, father_name_equiv, last_name_equiv, mother_name_equiv, gender, dob;
 
-    User(String email, String password) {
-        this.email = email;
-        this.password = password;
+    User(String first_name, String last_name){
+        this.first_name= first_name;
+        this.last_name = last_name;
+    }
+    User(){}
+    User (String first_name, String father_name, String last_name, String mother_name, String dob, String gender)
+    {
+        this.first_name = first_name;
+        this.father_name = father_name;
+        this.last_name = last_name;
+        this.mother_name = mother_name;
+        this.dob = dob;
+        this.gender = gender;
     }
 
-    public static final Creator<User> CREATOR = new Creator<User>() {
-        @Override
-        public User createFromParcel(Parcel in) {
-            return new User(in);
+    public String toString()
+    {
+        //Object u = new User();
+        Class uClass = this.getClass();
+        final Field[] fields = uClass.getFields();
+        String a = "";
+        for(int i =0; i<fields.length;i++)
+        {
+           // a+ fields[i].getName() + " = "+ fields[i].get
+            //f = uClass.getDeclaredField(fields[i].getName())
+            try {
+                Field f = uClass.getDeclaredField(fields[i].getName());
+                String v = ""+ f.get(this);
+                Log.d("USER", f+" = "+v);
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
+        return this.first_name+" "+this.father_name+" "+this.last_name +" "+"";
+    }
 
-        @Override
-        public User[] newArray(int size) {
-            return new User[size];
+    public User(HashMap<String, String> userData)
+    {
+        Class uClass = this.getClass();
+
+        for (Map.Entry<String, String> entry : userData.entrySet()) {
+
+            String key = entry.getKey();
+            String value = entry.getValue();
+
+            Field f = null;
+            try {
+                f = uClass.getDeclaredField(key);
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            }
+            f.setAccessible(true);
+
+            try {
+                f.set(this,""+value);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
-    };
-
-    public String getEmail() {
-        return email;
+        Log.d("NewUser", this.toString());
     }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isEmailValid() {
-        email = this.email.trim();
-        return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
-
-    public boolean isPasswordValid() {
-        password = this.password.trim();
-        return !password.isEmpty() && (password.length() >= 6);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.email);
-        dest.writeString(this.password);
-        //dest.writeString(this.);
-    }
-
-    public User(Parcel in) {
-        this.email = in.readString();
-        this.password = in.readString();
-    }
-
 
 }

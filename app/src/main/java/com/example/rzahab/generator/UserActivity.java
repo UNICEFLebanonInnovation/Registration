@@ -36,7 +36,7 @@ public class UserActivity extends AppCompatActivity implements Serializable {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
     private ProgressBar progressBar;
-    private FirebaseUser CurrentUser;
+    private FirebaseUser AuthCurrentUser;
     private String TAG;
 
     @Override
@@ -60,13 +60,13 @@ public class UserActivity extends AppCompatActivity implements Serializable {
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                CurrentUser = firebaseAuth.getCurrentUser();
-                if (CurrentUser == null) {
+                AuthCurrentUser = firebaseAuth.getCurrentUser();
+                if (AuthCurrentUser == null) {
                     // if user is null launch login activity
                     startActivity(new Intent(UserActivity.this, LoginActivity.class));
                     finish();
                 } else {
-                    helloUserText.setText(getString(R.string.hello) + CurrentUser.getEmail() + "");
+                    helloUserText.setText(getString(R.string.hello) + AuthCurrentUser.getEmail() + "");
                     progressBar.setVisibility(View.GONE);
                 }
             }
@@ -140,28 +140,28 @@ public class UserActivity extends AppCompatActivity implements Serializable {
 
     public boolean validateInput() {
         filled_fields = new HashMap<>();
-        EditText name_txt, lname_txt, fname_txt, mname_txt;
-        name_txt = (EditText) findViewById(R.id.name);
-        lname_txt = (EditText) findViewById(R.id.last_name);
-        fname_txt = (EditText) findViewById(R.id.father_name);
-        mname_txt = (EditText) findViewById(R.id.mother_name);
+        EditText first_name_txt, last_name_txt, father_name_txt, mother_name_txt;
+        first_name_txt = (EditText) findViewById(R.id.first_name);
+        last_name_txt = (EditText) findViewById(R.id.last_name);
+        father_name_txt = (EditText) findViewById(R.id.father_name);
+        mother_name_txt = (EditText) findViewById(R.id.mother_name);
 
         int required = 0;
 
-        if (name_txt.getText().toString().trim().length() != 0) {
-            filled_fields.put("name", name_txt.getText().toString());
+        if (first_name_txt.getText().toString().trim().length() != 0) {
+            filled_fields.put("first_name", first_name_txt.getText().toString());
             required++;
         }
-        if (lname_txt.getText().toString().trim().length() != 0) {
-            filled_fields.put("lname", lname_txt.getText().toString());
+        if (last_name_txt.getText().toString().trim().length() != 0) {
+            filled_fields.put("last_name", last_name_txt.getText().toString());
             required++;
         }
-        if (fname_txt.getText().toString().trim().length() != 0) {
-            filled_fields.put("fname", fname_txt.getText().toString());
+        if (father_name_txt.getText().toString().trim().length() != 0) {
+            filled_fields.put("father_name", father_name_txt.getText().toString());
             required++;
         }
-        if (mname_txt.getText().toString().trim().length() != 0) {
-            filled_fields.put("mname", mname_txt.getText().toString());
+        if (mother_name_txt.getText().toString().trim().length() != 0) {
+            filled_fields.put("mother_name", mother_name_txt.getText().toString());
             required++;
         }
 
@@ -169,16 +169,6 @@ public class UserActivity extends AppCompatActivity implements Serializable {
     }
 
     public HashMap<String, String> getUserData() {
-        EditText name_txt, lname_txt, fname_txt, mname_txt;
-        name_txt = (EditText) findViewById(R.id.name);
-        lname_txt = (EditText) findViewById(R.id.last_name);
-        fname_txt = (EditText) findViewById(R.id.father_name);
-        mname_txt = (EditText) findViewById(R.id.mother_name);
-
-        String name = name_txt.getText().toString();
-        String lname = lname_txt.getText().toString();
-        String fname = fname_txt.getText().toString();
-        String mname = mname_txt.getText().toString();
 
         DatePicker dob_dialog = (DatePicker) findViewById(R.id.dob);
 
@@ -191,12 +181,12 @@ public class UserActivity extends AppCompatActivity implements Serializable {
         String gender = (selectedGender == R.id.male) ? "male" : "female";
 
         HashMap<String, String> userData = new HashMap<>();
-        userData.put("name", name);
-        userData.put("last_name", lname);
-        userData.put("father_name", fname);
-        userData.put("mother_name", mname);
+
+        userData.putAll(filled_fields);
         userData.put("dob", dob);
         userData.put("gender", gender);
+
+        app.setUserData(userData);
 
         return userData;
     }
@@ -226,11 +216,5 @@ public class UserActivity extends AppCompatActivity implements Serializable {
         }
     }
 
-    public void goToList(View v) {
-        Intent i = new Intent(UserActivity.this, ListItemsActivity.class);
-        i.putExtra("users", suggested_users);
-        startActivity(i);
-        finish();
-    }
 
 }

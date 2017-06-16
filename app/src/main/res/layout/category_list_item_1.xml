@@ -19,7 +19,7 @@
         android:textStyle="normal" />
 
     <TextView
-        android:id="@+id/textview_mname"
+        android:id="@+id/textview_mother_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
@@ -31,7 +31,7 @@
         android:textStyle="normal" />
 
     <TextView
-        android:id="@+id/textview_fname"
+        android:id="@+id/textview_father_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"

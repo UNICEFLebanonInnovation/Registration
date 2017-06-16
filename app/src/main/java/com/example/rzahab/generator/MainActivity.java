@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText signupInputEmail;
     private EditText signupInputPassword;
     private String TAG;
-    private User CurrentUser;
+    private AuthUser CurrentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         String email = signupInputEmail.getText().toString();
         String password = signupInputPassword.getText().toString();
 
-        CurrentUser = new User(email, password);
+        CurrentUser = new AuthUser(email, password);
         if (!checkEmail()) {
             return;
         }
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "Authentication failed." + task.getException());
                         } else {
-                            startActivity(new Intent(MainActivity.this, ListItemsActivity.class));
+                            startActivity(new Intent(MainActivity.this, UserActivity.class));
                             finish();
                         }
                     }

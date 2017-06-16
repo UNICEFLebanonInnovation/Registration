@@ -5,8 +5,6 @@ import android.util.Log;
 import java.util.HashMap;
 import java.util.Map;
 
-import static android.content.ContentValues.TAG;
-
 /**
  * Created by Rzahab on 6/2/2017.
  */
@@ -14,6 +12,15 @@ import static android.content.ContentValues.TAG;
 public class SuggestionLibrary {
 
     private Map<String, String> arabicLib;
+    private String TAG;
+
+    public SuggestionLibrary() {
+        Log.d("SuggestionLibrary", "initializing");
+        setLib();
+        TAG = this.getClass().getSimpleName();
+        //_testing_transliterate("أحمد");
+        //_testing_getSimilarity();
+    }
 
     public double getDifferenceRate(Map<String, String> filled_fields, HashMap<String, String> currentUser) {
 
@@ -28,6 +35,7 @@ public class SuggestionLibrary {
             String equiv_key = key + "_equiv";
 
             String user_val = currentUser.containsKey(equiv_key) ? currentUser.get(equiv_key) : currentUser.get(key);
+            Log.d(TAG, key + ", " + equiv_key + " : (" + value + "==" + user_val + ") = " );
 
             Double current_rate = this.getDifference(value, user_val);
             Log.d(TAG, key + ", " + equiv_key + " : (" + value + "==" + user_val + ") = " + current_rate);
@@ -43,14 +51,6 @@ public class SuggestionLibrary {
         return (different_fields == 0) ? rate : rate / different_fields;
     }
 
-    public SuggestionLibrary() {
-        Log.d("SuggestionLibrary", "initializing");
-        setLib();
-        String TAG = "SuggestionLibrary";
-        //_testing_transliterate("أحمد");
-        //_testing_getSimilarity();
-    }
-
     public boolean isSimilar(String word1, String word2) {
         Log.d(TAG, "Comp: " + word1 + "==" + word2 + " => " + getDifference(word1, word2));
         return (getDifference(word1, word2) <= 50);
@@ -58,15 +58,22 @@ public class SuggestionLibrary {
 
     public double getDifference(String s, String t) {
         //Only convert arabic content
-        String pattern = "^[A-z ]$";
         //Log.d(TAG,"Comp: "+s+"=="+t+" => "+getDistancePercentage(s,t) );
-        s = s.matches(pattern) ? s : transliterate(s);
-        t = t.matches(pattern) ? t : transliterate(t);
+        s = transliterate(s);
+        t = transliterate(t);
 
         return getDistancePercentage(s, t);
     }
 
-    String transliterate(String word) {
+    public boolean requireTrans(String word) {
+        return !word.matches("^[A-z ]*$");
+    }
+
+    public String transliterate(String word) {
+
+        if (requireTrans(word))
+            return word;
+
         String newWord = "";
         for (int i = 0; i < word.length(); i++) {
             newWord += transliterateLetter(word.charAt(i));

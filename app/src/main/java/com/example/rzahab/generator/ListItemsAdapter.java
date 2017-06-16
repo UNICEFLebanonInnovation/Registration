@@ -13,6 +13,13 @@ import java.util.ArrayList;
  */
 
 public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsHolder> {
+
+    RecyclerView myRecyclerView;
+
+    public ArrayList<SuggestedUser> getmListItems() {
+        return mListItems;
+    }
+
     private ArrayList<SuggestedUser> mListItems;
     private Activity currentActivity;
 
@@ -20,11 +27,21 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsHolder> {
         mListItems = ListItems;
         currentActivity = activity;
     }
+    
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+
+        myRecyclerView = recyclerView;
+       // this.getItemId()
+    }
 
     @Override
     public ListItemsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(currentActivity);
         View view = layoutInflater.inflate(R.layout.suggested_list_item, parent, false);
+        view.setBackground(currentActivity.getDrawable(R.drawable.ripple));
+        view.setOnClickListener(new SuggestedItemOnClickListener(myRecyclerView,currentActivity));
         return new ListItemsHolder(view);
 
     }
@@ -39,4 +56,11 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsHolder> {
     public int getItemCount() {
         return mListItems.size();
     }
+
+
+    public String getItemUId(int position)
+    {
+        return this.mListItems.get(position).getID();
+    }
+
 }

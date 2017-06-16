@@ -5,25 +5,21 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 
 public class ListSuggestedActivity extends AppCompatActivity {
 
     private final String TAG = "ListActivity";
-    DatabaseReference mDB;
-    DatabaseReference mListItemRef;
     private RecyclerView mListItemsRecyclerView;
     private ListItemsAdapter mAdapter;
-    private ArrayList<ListItem> myListItems;
-    private FirebaseUser CurrentUser;
     Generator app;
 
     @Override
@@ -42,8 +38,12 @@ public class ListSuggestedActivity extends AppCompatActivity {
         String gender = extras.getString("gender");
         String dob = extras.getString("dob");
 
-        TextView filterTextView = (TextView) findViewById(R.id.filterTextView);
-        filterTextView.setText("Suggested " + gender + " users, born on: " + dob);
+        TextView genderTextView = (TextView) findViewById(R.id.genderTextView);
+        genderTextView.setText(Html.fromHtml("Suggested users: <b>" + gender + " </b>"));
+
+        TextView dobTextView = (TextView) findViewById(R.id.dobTextView);
+        dob = "<b>"+dob.substring(0,2)+" / "+dob.substring(2,4)+" / "+dob.substring(4)+ "</b>";
+        dobTextView.setText(Html.fromHtml("Born on: " + dob));
 
         updateUI(app.getSuggestedUsers());
 
@@ -80,5 +80,10 @@ public class ListSuggestedActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void addNew(View v)
+    {
+        startActivity(new Intent(this, NewUserActivity.class));
+        finish();
+    }
 
 }

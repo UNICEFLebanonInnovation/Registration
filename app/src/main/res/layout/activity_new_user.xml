@@ -12,37 +12,25 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
+        <TextView
+            android:id="@+id/hello_label"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:text="@string/hello"
+            android:textColor="@color/colorPrimaryDark" />
 
-            <TextView
-                android:id="@+id/hello_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/transparent"
-                android:text="@string/hello"
-                android:textColor="@color/colorPrimaryDark" />
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true" />
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
-
-        </RelativeLayout>
-
+        <TextView
+            android:id="@+id/name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:text="Name"
+            android:textColor="@color/colorPrimaryDark" />
 
         <EditText
             android:id="@+id/first_name"
@@ -52,6 +40,16 @@
             android:text="ray"
             android:hint="First Name"
             android:inputType="textPersonName" />
+        <TextView
+            android:id="@+id/last_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:text="Last Name"
+            android:textColor="@color/colorPrimaryDark" />
 
         <EditText
             android:id="@+id/last_name"
@@ -61,6 +59,16 @@
             android:text="zah"
             android:hint="Last Name"
             android:inputType="textPersonName" />
+        <TextView
+            android:id="@+id/father_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:text="Father Name"
+            android:textColor="@color/colorPrimaryDark" />
 
         <EditText
             android:id="@+id/father_name"
@@ -70,9 +78,39 @@
             android:text="faw"
             android:hint="Father Name"
             android:inputType="textPersonName" />
+        <TextView
+            android:id="@+id/mother_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:text="Mother Name"
+            android:textColor="@color/colorPrimaryDark" />
 
         <EditText
             android:id="@+id/mother_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="fid"
+            android:hint="Full Mother Name"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/dob_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:text="Date of Birth"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <EditText
+            android:id="@+id/dob"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -86,7 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@android:color/transparent"
-            android:text="@string/gender_label"
+            android:text="Gender"
             android:textColor="@color/colorPrimaryDark" />
 
         <RadioGroup
@@ -100,24 +138,16 @@
                 android:id="@+id/female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:clickable="false"
                 android:text="@string/female" />
 
             <RadioButton
                 android:id="@+id/male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="false"
                 android:text="@string/male" />
         </RadioGroup>
-
-        <DatePicker
-            android:id="@+id/dob"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:headerBackground="@color/colorPrimary"
-            android:spinnersShown="true"
-            android:startYear="1989" />
 
         <Button
             android:id="@+id/submit"
@@ -125,20 +155,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@color/colorPrimaryDark"
-            android:onClick="search"
-            android:text="@string/btn_submit"
+            android:onClick="add"
+            android:text="Add"
             android:textColor="@android:color/white" />
 
-
-        <Button
-            android:id="@+id/btn_logout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:background="@color/colorPrimaryDark"
-            android:onClick="signOut"
-            android:text="@string/btn_logout"
-            android:textColor="@android:color/white" />
 
     </LinearLayout>
 </ScrollView>

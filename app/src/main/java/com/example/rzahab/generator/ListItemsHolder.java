@@ -14,8 +14,8 @@ public class ListItemsHolder extends RecyclerView.ViewHolder {
     public ListItemsHolder(View itemView) {
         super(itemView);
         nameTextView = (TextView) itemView.findViewById(R.id.textview_name);
-        motherNameTextView = (TextView) itemView.findViewById(R.id.textview_mname);
-        fatherNameTextView = (TextView) itemView.findViewById(R.id.textview_fname);
+        motherNameTextView = (TextView) itemView.findViewById(R.id.textview_mother_name);
+        fatherNameTextView = (TextView) itemView.findViewById(R.id.textview_father_name);
     }
 
     public void bindData(SuggestedUser user) {
