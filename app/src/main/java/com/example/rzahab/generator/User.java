@@ -11,26 +11,10 @@ import java.util.Map;
  */
 
 public class User {
-    String first_name, father_name, last_name, mother_name, name_equiv, father_name_equiv, last_name_equiv, mother_name_equiv, gender, dob;
+    String first_name, father_name, last_name, mother_name,
+            first_name_equiv, father_name_equiv, last_name_equiv, mother_name_equiv, gender, dob;
 
     private Map<String, String> postParams;
-
-    User(String first_name, String last_name) {
-        this.first_name = first_name;
-        this.last_name = last_name;
-    }
-
-    User() {
-    }
-
-    User(String first_name, String father_name, String last_name, String mother_name, String dob, String gender) {
-        this.first_name = first_name;
-        this.father_name = father_name;
-        this.last_name = last_name;
-        this.mother_name = mother_name;
-        this.dob = dob;
-        this.gender = gender;
-    }
 
     public User(HashMap<String, String> userData) {
         Class uClass = this.getClass();

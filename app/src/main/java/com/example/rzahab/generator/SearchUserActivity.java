@@ -30,7 +30,6 @@ import java.util.Map;
 public class SearchUserActivity extends AppCompatActivity implements Serializable {
 
     Map<String, String> filled_fields;
-    HashMap<String, HashMap<String, String>> suggested_users;
     Generator app;
 
     private TextView helloUserText;
@@ -46,7 +45,7 @@ public class SearchUserActivity extends AppCompatActivity implements Serializabl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        TAG = this.getLocalClassName().toString();
+        TAG = this.getLocalClassName();
 
         app = ((Generator) this.getApplication());
 
@@ -125,6 +124,7 @@ public class SearchUserActivity extends AppCompatActivity implements Serializabl
                         finish();
                     } else {
                         Toast.makeText(SearchUserActivity.this, "Non found", Toast.LENGTH_LONG).show();
+                        addNew();
                     }
                 }
 
@@ -192,8 +192,9 @@ public class SearchUserActivity extends AppCompatActivity implements Serializabl
     public HashMap<String, String> getUserData() {
 
         DatePicker dob_dialog = (DatePicker) findViewById(R.id.dob);
+        String month = String.format("%02d", dob_dialog.getMonth() + 1);
 
-        String dob = dob_dialog.getDayOfMonth() + "" + String.format("%02d", dob_dialog.getMonth() + 1) + "" + dob_dialog.getYear();
+        String dob = dob_dialog.getDayOfMonth() + "" + month + "" + dob_dialog.getYear();
 
         RadioGroup gender_group = (RadioGroup) findViewById(R.id.gender);
         int selectedGender = gender_group.getCheckedRadioButtonId();
@@ -235,6 +236,11 @@ public class SearchUserActivity extends AppCompatActivity implements Serializabl
         if (authListener != null) {
             auth.removeAuthStateListener(authListener);
         }
+    }
+
+    public void addNew() {
+        startActivity(new Intent(this, NewUserActivity.class));
+        finish();
     }
 
 

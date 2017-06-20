@@ -78,9 +78,9 @@ public class MainActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
 
                         if (!task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "" + task.getException(),
+                            Toast.makeText(MainActivity.this, "" + task.getException().getMessage(),
                                     Toast.LENGTH_SHORT).show();
-                            Log.d(TAG, "Authentication failed." + task.getException());
+                            Log.d(TAG, "Authentication failed." + task.getException().getMessage());
                         } else {
                             startActivity(new Intent(MainActivity.this, SearchUserActivity.class));
                             finish();
@@ -105,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean checkPassword() {
 
-        String password = signupInputPassword.getText().toString();
         if (!CurrentUser.isPasswordValid()) {
 
             signupInputLayoutPassword.setError(getString(R.string.err_msg_password));

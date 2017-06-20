@@ -51,11 +51,6 @@ public class SuggestionLibrary {
         return (different_fields == 0) ? rate : rate / different_fields;
     }
 
-    public boolean isSimilar(String word1, String word2) {
-        Log.d(TAG, "Comp: " + word1 + "==" + word2 + " => " + getDifference(word1, word2));
-        return (getDifference(word1, word2) <= 50);
-    }
-
     public double getDifference(String s, String t) {
         //Only convert arabic content
         //Log.d(TAG,"Comp: "+s+"=="+t+" => "+getDistancePercentage(s,t) );

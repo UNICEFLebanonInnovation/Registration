@@ -95,13 +95,13 @@ public class NewUserActivity extends AppCompatActivity {
         if (!validateInput()) {
             Toast.makeText(this, "Make sure to provide all info", Toast.LENGTH_LONG).show();
         } else {
-            String name_equiv, last_name_equiv, father_name_equiv, mother_name_equiv;
+            String first_name_equiv, last_name_equiv, father_name_equiv, mother_name_equiv;
 
             SuggestionLibrary sl = new SuggestionLibrary();
 
             if (sl.requireTrans(userData.get("first_name"))) {
-                name_equiv = sl.transliterate(userData.get("first_name"));
-                userData.put("name_equiv", name_equiv);
+                first_name_equiv = sl.transliterate(userData.get("first_name"));
+                userData.put("first_name_equiv", first_name_equiv);
             }
             if (sl.requireTrans(userData.get("last_name"))) {
                 last_name_equiv = sl.transliterate(userData.get("last_name"));

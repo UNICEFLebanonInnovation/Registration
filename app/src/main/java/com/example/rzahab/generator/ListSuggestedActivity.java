@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,9 +14,11 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
+import static android.text.Html.fromHtml;
+
 public class ListSuggestedActivity extends AppCompatActivity {
 
-    private final String TAG = "ListActivity";
+    private String TAG;
     private RecyclerView mListItemsRecyclerView;
     private ListItemsAdapter mAdapter;
     Generator app;
@@ -28,9 +29,9 @@ public class ListSuggestedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_suggested);
 
+        TAG = this.getLocalClassName();
         app = ((Generator) this.getApplication());
         mListItemsRecyclerView = (RecyclerView) findViewById(R.id.listItem_recycler_view);
-        // mListItemsRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getResources()));
         mListItemsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         Bundle extras = getIntent().getExtras();
@@ -39,11 +40,12 @@ public class ListSuggestedActivity extends AppCompatActivity {
         String dob = extras.getString("dob");
 
         TextView genderTextView = (TextView) findViewById(R.id.genderTextView);
-        genderTextView.setText(Html.fromHtml("Suggested users: <b>" + gender + " </b>"));
+        genderTextView.setText(fromHtml("Suggested users: <b>" + gender + " </b>"));
 
         TextView dobTextView = (TextView) findViewById(R.id.dobTextView);
+        assert dob != null;
         dob = "<b>"+dob.substring(0,2)+" / "+dob.substring(2,4)+" / "+dob.substring(4)+ "</b>";
-        dobTextView.setText(Html.fromHtml("Born on: " + dob));
+        dobTextView.setText(fromHtml("Born on: " + dob));
 
         updateUI(app.getSuggestedUsers());
 

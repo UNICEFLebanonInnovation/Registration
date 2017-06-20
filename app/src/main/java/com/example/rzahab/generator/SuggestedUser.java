@@ -45,15 +45,12 @@ public class SuggestedUser {
     }
 
     public SuggestedUser(HashMap<String, String> currentUser) {
-        this.fullName = currentUser.containsKey("first_name") ? currentUser.get("first_name") : "";
-        this.fullName = currentUser.containsKey("last_name") ? this.fullName + " " + currentUser.get("last_name") : this.fullName;
+        this.fullName = !currentUser.containsKey("first_name") ? "" : currentUser.get("first_name");
+        this.fullName = !currentUser.containsKey("last_name") ? this.fullName : (this.fullName + " " + currentUser.get("last_name"));
 
         this.fatherName = currentUser.containsKey("father_name") ? currentUser.get("father_name") : "N/A";
         this.motherName = currentUser.containsKey("mother_name") ? currentUser.get("mother_name") : "N/A";
 
         this.ID = currentUser.containsKey("ID") ? currentUser.get("ID") : "N/A";
-
     }
-
-
 }
