@@ -77,4 +77,23 @@ public class User {
         Log.d("NewUser", this.toString());
     }
 
+    public Map<String, String> getPost() {
+
+        String day = dob.substring(0, 2);
+        String month = dob.substring(2, 4);
+        String year = dob.substring(4);
+
+        Map<String, String> postParams = new HashMap<>();
+        postParams.put("first_name", this.first_name);
+        postParams.put("father_name", this.father_name);
+        postParams.put("last_name", this.last_name);
+        postParams.put("mother_name", this.last_name);
+        postParams.put("gender", this.gender);
+        postParams.put("birthday_day", day);
+        postParams.put("birthday_month", month);
+        postParams.put("birthday_year", year);
+        return postParams;
+        //", father_name, last_name, mother_name  ";
+    }
+
 }

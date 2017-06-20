@@ -3,6 +3,7 @@ package com.example.rzahab.generator;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -11,8 +12,11 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.HashMap;
+
 
 
 public class NewUserActivity extends AppCompatActivity {
@@ -20,15 +24,47 @@ public class NewUserActivity extends AppCompatActivity {
     Generator app;
     HashMap<String, String> userData;
     EditText first_name_txt, last_name_txt, father_name_txt, mother_name_txt, dob_txt;
+    String TAG;
+    Activity currentActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user);
         app = (Generator) this.getApplication();
+        TAG = this.getClass().getSimpleName();
         userData = app.getUserData();
+        currentActivity = this;
         populateData();
+    }
 
+    public boolean validateInput() {
+
+        EditText first_name_txt, last_name_txt, father_name_txt, mother_name_txt;
+        first_name_txt = (EditText) findViewById(R.id.first_name);
+        last_name_txt = (EditText) findViewById(R.id.last_name);
+        father_name_txt = (EditText) findViewById(R.id.father_name);
+        mother_name_txt = (EditText) findViewById(R.id.mother_name);
+
+        if (first_name_txt.getText().toString().trim().length() != 0) {
+            userData.put("first_name", first_name_txt.getText().toString());
+        } else
+            return false;
+        if (last_name_txt.getText().toString().trim().length() != 0) {
+            userData.put("last_name", last_name_txt.getText().toString());
+        } else
+            return false;
+        if (father_name_txt.getText().toString().trim().length() != 0) {
+            userData.put("father_name", father_name_txt.getText().toString());
+        } else
+            return false;
+        if (mother_name_txt.getText().toString().trim().length() != 0) {
+            userData.put("mother_name", mother_name_txt.getText().toString());
+        } else
+            return false;
+
+        return true;
     }
 
     public void populateData() {
@@ -79,62 +115,41 @@ public class NewUserActivity extends AppCompatActivity {
                 mother_name_equiv = sl.transliterate(userData.get("mother_name"));
                 userData.put("mother_name_equiv", mother_name_equiv);
             }
-
-            User u = new User(userData);
-            final String ID = generateID();
-            final Activity currentActivity = this;
-
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference usersRef = database.getReference("users").child(userData.get("gender"))
-                    .child(userData.get("dob")).child(ID);
-
-            usersRef.setValue(u, new DatabaseReference.CompletionListener() {
-                @Override
-                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                    if (databaseError != null) {
-                        System.out.println("Data could not be saved " + databaseError.getMessage());
-                    } else {
-                        app.moveToKobo(currentActivity,ID);
-                    }
-                }
-            });
-
-
+            generateID();
         }
 
     }
 
-    public boolean validateInput() {
-
-        EditText first_name_txt, last_name_txt, father_name_txt, mother_name_txt;
-        first_name_txt = (EditText) findViewById(R.id.first_name);
-        last_name_txt = (EditText) findViewById(R.id.last_name);
-        father_name_txt = (EditText) findViewById(R.id.father_name);
-        mother_name_txt = (EditText) findViewById(R.id.mother_name);
-
-        if (first_name_txt.getText().toString().trim().length() != 0) {
-            userData.put("first_name", first_name_txt.getText().toString());
-        } else
-            return false;
-        if (last_name_txt.getText().toString().trim().length() != 0) {
-            userData.put("last_name", last_name_txt.getText().toString());
-        } else
-            return false;
-        if (father_name_txt.getText().toString().trim().length() != 0) {
-            userData.put("father_name", father_name_txt.getText().toString());
-        } else
-            return false;
-        if (mother_name_txt.getText().toString().trim().length() != 0) {
-            userData.put("mother_name", mother_name_txt.getText().toString());
-        } else
-            return false;
-
-        return true;
+    public void generateID() {
+        User u = new User(userData);
+        GsonRequest g = new GsonRequest(currentActivity, "populateUI");
+        g.post(u.getPost());
     }
 
 
-    public String generateID() {
-        // PythonInterpreter interpreter = new PythonInterpreter();
-        return "ID" + first_name_txt.getText().toString();
+    public void populateUI(String jsonResponse) {
+        Gson gson = new GsonBuilder().create();
+        final HashID hashID = gson.fromJson(jsonResponse, HashID.class);
+
+        final String ID = hashID.getHash();
+        Log.d(TAG, "Generated ID: " + ID);
+
+        User u = new User(userData);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference usersRef = database.getReference("users").child(userData.get("gender"))
+                .child(userData.get("dob")).child(ID);
+
+        usersRef.setValue(u, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if (databaseError != null) {
+                    System.out.println("Data could not be saved " + databaseError.getMessage());
+                } else {
+                    app.moveToKobo(currentActivity, ID);
+                }
+            }
+        });
     }
+
 }

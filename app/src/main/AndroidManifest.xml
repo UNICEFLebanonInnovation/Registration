@@ -27,11 +27,11 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".UserActivity"
+            android:name=".SearchUserActivity"
             android:label="@string/title_activity_user"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ListSuggestedActivity" />
-        <activity android:name=".NewUserActivity"></activity>
+        <activity android:name=".NewUserActivity" />
     </application>
 
 </manifest>

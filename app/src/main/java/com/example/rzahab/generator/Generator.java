@@ -19,15 +19,27 @@ import java.util.HashMap;
  */
 
 public class Generator extends Application {
+    public String TAG;
     private ArrayList<SuggestedUser> suggestedUsers;
     private HashMap<String, String> userData;
     private double rateThreshold;
+    private String generatorURL;
+
+    public String getGeneratorURL() {
+        return generatorURL;
+    }
+
+    public void setGeneratorURL(String generatorURL) {
+        this.generatorURL = generatorURL;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
         this.setRateThreshold(50);
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        TAG = this.getClass().getSimpleName();
+        generatorURL = "https://id-gen.herokuapp.com/generate";
     }
 
     public HashMap<String, String> getUserData() {
@@ -53,14 +65,14 @@ public class Generator extends Application {
     public void setSuggestedUsers(ArrayList<SuggestedUser> users) {
         this.suggestedUsers = users;
     }
-    public void moveToKobo(Activity currentActivity, String UID)
-    {
+
+    public void moveToKobo(Activity currentActivity, String UID) {
         ClipboardManager clipboard = (ClipboardManager) currentActivity.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("ID", UID);
-        Toast.makeText(currentActivity, "Value copied to ClipBoard: "+UID, Toast.LENGTH_LONG).show();
+        Toast.makeText(currentActivity, "Value copied to ClipBoard: " + UID, Toast.LENGTH_LONG).show();
         clipboard.setPrimaryClip(clip);
 
-        startNewActivity(currentActivity,"org.koboc.collect.android");
+        startNewActivity(currentActivity, "org.koboc.collect.android");
     }
 
     public void startNewActivity(Context context, String packageName) {

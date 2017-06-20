@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Log.d(TAG, "أ"+ " is : "+ ab.transliterateLetter("أ".charAt(0)));
         if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(MainActivity.this, UserActivity.class));
+            startActivity(new Intent(MainActivity.this, SearchUserActivity.class));
             finish();
         }
 
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "Authentication failed." + task.getException());
                         } else {
-                            startActivity(new Intent(MainActivity.this, UserActivity.class));
+                            startActivity(new Intent(MainActivity.this, SearchUserActivity.class));
                             finish();
                         }
                     }

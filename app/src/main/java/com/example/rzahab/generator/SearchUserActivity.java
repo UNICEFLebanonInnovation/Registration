@@ -2,6 +2,7 @@ package com.example.rzahab.generator;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserActivity extends AppCompatActivity implements Serializable {
+public class SearchUserActivity extends AppCompatActivity implements Serializable {
 
     Map<String, String> filled_fields;
     HashMap<String, HashMap<String, String>> suggested_users;
@@ -38,6 +39,7 @@ public class UserActivity extends AppCompatActivity implements Serializable {
     private ProgressBar progressBar;
     private FirebaseUser AuthCurrentUser;
     private String TAG;
+    private boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,7 @@ public class UserActivity extends AppCompatActivity implements Serializable {
                 AuthCurrentUser = firebaseAuth.getCurrentUser();
                 if (AuthCurrentUser == null) {
                     // if user is null launch login activity
-                    startActivity(new Intent(UserActivity.this, LoginActivity.class));
+                    startActivity(new Intent(SearchUserActivity.this, LoginActivity.class));
                     finish();
                 } else {
                     helloUserText.setText(getString(R.string.hello) + AuthCurrentUser.getEmail() + "");
@@ -116,13 +118,13 @@ public class UserActivity extends AppCompatActivity implements Serializable {
                     if (users_suggested.size() > 0) {
                         app.setSuggestedUsers(users_suggested);
 
-                        Intent i = new Intent(UserActivity.this, ListSuggestedActivity.class);
+                        Intent i = new Intent(SearchUserActivity.this, ListSuggestedActivity.class);
                         i.putExtra("gender", gender_search);
                         i.putExtra("dob", dob_search);
                         startActivity(i);
                         finish();
                     } else {
-                        Toast.makeText(UserActivity.this, "Non found", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SearchUserActivity.this, "Non found", Toast.LENGTH_LONG).show();
                     }
                 }
 
@@ -136,6 +138,25 @@ public class UserActivity extends AppCompatActivity implements Serializable {
         }
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 
     public boolean validateInput() {
