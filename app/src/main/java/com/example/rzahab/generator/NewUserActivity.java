@@ -123,7 +123,7 @@ public class NewUserActivity extends AppCompatActivity {
     public void generateID() {
         User u = new User(userData);
         GsonRequest g = new GsonRequest(currentActivity, "populateUI");
-        g.post(u.getPost());
+        g.post(u.asPost());
     }
 
 
