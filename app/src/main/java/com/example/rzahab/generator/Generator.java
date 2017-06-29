@@ -40,6 +40,8 @@ public class Generator extends Application {
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         TAG = this.getClass().getSimpleName();
         generatorURL = "https://id-gen.herokuapp.com/generate";
+        //IDGen idGen = new IDGen();
+
     }
 
     public HashMap<String, String> getUserData() {

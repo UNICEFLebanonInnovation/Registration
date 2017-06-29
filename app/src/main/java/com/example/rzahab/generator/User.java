@@ -11,7 +11,47 @@ import java.util.Map;
  */
 
 public class User {
-    String first_name, father_name, last_name, mother_name,
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public String getFather_name() {
+        return father_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public String getMother_name() {
+        return mother_name;
+    }
+
+    public String getFirst_name_equiv() {
+        return first_name_equiv;
+    }
+
+    public String getFather_name_equiv() {
+        return father_name_equiv;
+    }
+
+    public String getLast_name_equiv() {
+        return last_name_equiv;
+    }
+
+    public String getMother_name_equiv() {
+        return mother_name_equiv;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    private String first_name, father_name, last_name, mother_name,
             first_name_equiv, father_name_equiv, last_name_equiv, mother_name_equiv, gender, dob;
 
     private Map<String, String> postParams;

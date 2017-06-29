@@ -199,7 +199,6 @@ public class SearchUserActivity extends AppCompatActivity implements Serializabl
         RadioGroup gender_group = (RadioGroup) findViewById(R.id.gender);
         int selectedGender = gender_group.getCheckedRadioButtonId();
 
-
         String gender = (selectedGender == R.id.male) ? "male" : "female";
 
         HashMap<String, String> userData = new HashMap<>();

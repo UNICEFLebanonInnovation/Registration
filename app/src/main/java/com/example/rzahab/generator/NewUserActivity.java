@@ -17,6 +17,7 @@ import com.google.gson.GsonBuilder;
 
 import java.util.HashMap;
 
+import static android.os.Build.ID;
 
 
 public class NewUserActivity extends AppCompatActivity {
@@ -122,11 +123,31 @@ public class NewUserActivity extends AppCompatActivity {
 
     public void generateID() {
         User u = new User(userData);
-        GsonRequest g = new GsonRequest(currentActivity, "populateUI");
-        g.post(u.asPost());
+        IDGen idGen = new IDGen(u);
+
+        final String UID = idGen.generateID();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference usersRef = database.getReference("users").child(userData.get("gender"))
+                .child(userData.get("dob")).child(UID);
+
+        usersRef.setValue(u, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+            if (databaseError != null) {
+                System.out.println("Data could not be saved " + databaseError.getMessage());
+            } else {
+                app.moveToKobo(currentActivity, UID);
+            }
+            }
+        });
+
+        //GsonRequest g = new GsonRequest(currentActivity, "populateUI");
+        //g.post(u.asPost());
     }
 
-
+    /*
+    Legacy : was used when we were calling the Generator ID API
+     */
     public void populateUI(String jsonResponse) {
         Gson gson = new GsonBuilder().create();
         final HashID hashID = gson.fromJson(jsonResponse, HashID.class);
