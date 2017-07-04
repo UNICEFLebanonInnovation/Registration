@@ -1,6 +1,7 @@
 package com.example.rzahab.generator;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,8 +17,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.HashMap;
-
-import static android.os.Build.ID;
 
 
 public class NewUserActivity extends AppCompatActivity {
@@ -84,6 +83,7 @@ public class NewUserActivity extends AppCompatActivity {
         dob_txt.setText(dob);
 
         RadioButton checked_radio;
+        Log.d(TAG, "Gender: "+userData.get("gender"));
         if (userData.get("gender").equals("female")) {
             checked_radio = (RadioButton) findViewById(R.id.female);
         } else {
@@ -136,7 +136,11 @@ public class NewUserActivity extends AppCompatActivity {
             if (databaseError != null) {
                 System.out.println("Data could not be saved " + databaseError.getMessage());
             } else {
-                app.moveToKobo(currentActivity, UID);
+                //app.moveToKobo(currentActivity, UID);
+                Intent previewIntent = new Intent(currentActivity, PreviewActivity.class);
+                previewIntent.putExtra("UID",""+UID);
+                startActivity(previewIntent);
+                finish();
             }
             }
         });

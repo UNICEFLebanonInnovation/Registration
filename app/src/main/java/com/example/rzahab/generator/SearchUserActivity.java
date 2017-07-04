@@ -194,7 +194,7 @@ public class SearchUserActivity extends AppCompatActivity implements Serializabl
         DatePicker dob_dialog = (DatePicker) findViewById(R.id.dob);
         String month = String.format("%02d", dob_dialog.getMonth() + 1);
 
-        String dob = dob_dialog.getDayOfMonth() + "" + month + "" + dob_dialog.getYear();
+        String dob = String.format("%02d",dob_dialog.getDayOfMonth()) + "" + month + "" + dob_dialog.getYear();
 
         RadioGroup gender_group = (RadioGroup) findViewById(R.id.gender);
         int selectedGender = gender_group.getCheckedRadioButtonId();

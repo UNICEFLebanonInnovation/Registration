@@ -7,6 +7,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.firebase.database.FirebaseDatabase;
@@ -38,9 +39,8 @@ public class Generator extends Application {
         super.onCreate();
         this.setRateThreshold(50);
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        TAG = this.getClass().getSimpleName();
+        TAG = "MAIN";
         generatorURL = "https://id-gen.herokuapp.com/generate";
-        //IDGen idGen = new IDGen();
 
     }
 
@@ -71,7 +71,7 @@ public class Generator extends Application {
     public void moveToKobo(Activity currentActivity, String UID) {
         ClipboardManager clipboard = (ClipboardManager) currentActivity.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("ID", UID);
-        Toast.makeText(currentActivity, "Value copied to ClipBoard: " + UID, Toast.LENGTH_LONG).show();
+        Toast.makeText(currentActivity, this.getResources().getString(R.string.id_copied) + UID, Toast.LENGTH_LONG).show();
         clipboard.setPrimaryClip(clip);
 
         startNewActivity(currentActivity, "org.koboc.collect.android");

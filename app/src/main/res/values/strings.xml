@@ -26,4 +26,12 @@
     <string name="btn_sign_out">Sign Out</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="action_settings">Settings</string>
+    <string name="new_id">The New User ID is :</string>
+    <string name="id_copied">The ID is now copied to your clipboard, click on the button to go to Kobo Forms</string>
+    <string name="go_to_kobo">Go To Kobo</string>
+    <string name="_1234">1234</string>
+    <string name="full_name">Full Name</string>
+    <string name="textview">TextView</string>
+    <string name="none_of_the_above">None of the above? Create a new user</string>
+    <string name="bleu_border">bleu_border</string>
 </resources>

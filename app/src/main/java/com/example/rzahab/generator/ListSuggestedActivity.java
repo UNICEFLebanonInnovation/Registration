@@ -77,6 +77,7 @@ public class ListSuggestedActivity extends AppCompatActivity {
             case R.id.action_logout:
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(this, LoginActivity.class));
+                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -32,6 +32,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ListSuggestedActivity" />
         <activity android:name=".NewUserActivity" />
+        <activity android:name=".PreviewActivity" />
     </application>
 
 </manifest>
