@@ -9,5 +9,4 @@
     <dimen name="logo_w_h">100dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
-    <dimen name="padding_main">20dp</dimen>
 </resources>

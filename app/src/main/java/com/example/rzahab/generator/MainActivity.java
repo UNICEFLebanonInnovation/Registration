@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText signupInputPassword;
     private String TAG;
     private AuthUser CurrentUser;
+    Generator app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +35,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         TAG = this.getClass().getSimpleName();
         auth = FirebaseAuth.getInstance();
+        app = ((Generator) this.getApplication());
 
         //SuggestionLibrary ab = new SuggestionLibrary();
 
         //Log.d(TAG, "أ"+ " is : "+ ab.transliterateLetter("أ".charAt(0)));
         if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(MainActivity.this, SearchUserActivity.class));
+            startActivity(new Intent(MainActivity.this, ListUsersActivity.class));
             finish();
         }
 

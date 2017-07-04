@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/find_user">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,10 +30,12 @@
             android:label="@string/title_activity_login" />
         <activity
             android:name=".SearchUserActivity"
-            android:label="@string/title_activity_user"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_user" />
         <activity android:name=".ListSuggestedActivity" />
         <activity android:name=".NewUserActivity" />
+        <activity android:name=".PreviewActivity" />
+        <activity android:name=".LanguageActivity"></activity>
+        <activity android:name=".ListUsersActivity"></activity>
     </application>
 
 </manifest>

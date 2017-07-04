@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context="com.example.rzahab.generator.LanguageActivity">
+
+
+    <TextView
+        android:id="@+id/radio_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:text="@string/pick_language"
+        android:textColor="@color/colorPrimaryDark" />
+
+
+    <RadioGroup
+        android:id="@+id/radio_language"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/arabic"
+            android:layout_height="0dp"
+            android:layout_weight=".5"
+            android:layout_width="wrap_content"
+            android:checked="true"
+            android:text="@string/arabic" />
+
+        <RadioButton
+            android:id="@+id/english"
+            android:layout_height="0dp"
+            android:layout_weight=".5"
+            android:layout_width="wrap_content"
+            android:text="@string/english" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimaryDark"
+        android:onClick="switchLang"
+        android:text="@string/switch_language"
+        android:textColor="@android:color/white" />
+</LinearLayout>

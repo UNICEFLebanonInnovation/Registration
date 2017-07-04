@@ -19,6 +19,10 @@ public class IDGen {
         this.user = user;
     }
 
+    public IDGen() {
+
+    }
+
     public String generateID() {
 
         String first_name = (user.getFirst_name_equiv() != null) ?
@@ -35,25 +39,24 @@ public class IDGen {
 
         String full_name = first_name + father_name + last_name;
 
-        String gender_char = user.getGender().substring(1);
+        String gender_char = user.getGender().substring(0,1);
 
-        String full_name_hash = primeHash(full_name,4);
-        String mother_name_hash = primeHash(mother_name,3);
+        String full_name_hash = primeHash(full_name, 4);
+        String mother_name_hash = primeHash(mother_name, 3);
 
-        String birthday_hash = primeHash(user.getDob(),3);
+        String birthday_hash = primeHash(user.getDob(), 3);
 
-        Log.d("bla",user.getDob());
+        String full_name_char_count = String.format("%02d", full_name.length());
+        String mother_name_char_count = String.format("%02d", mother_name.length());
 
-        String full_name_char_count = String.format("%04d", full_name.length());
-        String mother_name_char_count = String.format("%04d", mother_name.length());
+        String hash = full_name_char_count + mother_name_char_count + full_name_hash + mother_name_hash + birthday_hash + gender_char;
 
-        String hash = full_name_char_count + mother_name_char_count + full_name_hash + mother_name_hash + birthday_hash +gender_char;
-
+        Log.d("Hashing","ID: "+hash);
         return hash;
     }
 
     public String primeHash(String name, int padding) {
-        BigInteger b_10000 = new BigInteger("10000");
+        BigInteger b_10000 = new BigInteger("" + (int) Math.pow(10, padding));
 
         String hashed = Hashing.sha1()
                 .hashString(name, StandardCharsets.UTF_8)
@@ -61,13 +64,10 @@ public class IDGen {
 
         BigInteger hashedToInt = new BigInteger(hashed, 16);
 
-        String name_hash = String.format("%0"+padding+"d",hashedToInt.mod(b_10000));
-        Log.d("hashed", "lead: " + name_hash);
+        String name_hash = String.format("%0" + padding + "d", hashedToInt.mod(b_10000));
 
         return name_hash;
     }
-
-
 }
 
 

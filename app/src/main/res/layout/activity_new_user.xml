@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:layout_alignParentBottom="true"
     android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true">
+    android:layout_alignParentStart="true"
+    android:padding="@dimen/padding_main">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -37,8 +38,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="ray"
-            android:hint="First Name"
             android:inputType="textPersonName" />
         <TextView
             android:id="@+id/last_name_label"
@@ -48,7 +47,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginTop="10dp"
             android:background="@android:color/transparent"
-            android:text="Last Name"
+            android:text="@string/last_name"
             android:textColor="@color/colorPrimaryDark" />
 
         <EditText
@@ -56,8 +55,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="zah"
-            android:hint="Last Name"
             android:inputType="textPersonName" />
         <TextView
             android:id="@+id/father_name_label"
@@ -67,7 +64,6 @@
             android:layout_alignParentStart="true"
             android:layout_marginTop="10dp"
             android:background="@android:color/transparent"
-            android:text="Father Name"
             android:textColor="@color/colorPrimaryDark" />
 
         <EditText
@@ -75,8 +71,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="faw"
-            android:hint="Father Name"
             android:inputType="textPersonName" />
         <TextView
             android:id="@+id/mother_name_label"
@@ -86,7 +80,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginTop="10dp"
             android:background="@android:color/transparent"
-            android:text="Mother Name"
+            android:text="@string/mother_name"
             android:textColor="@color/colorPrimaryDark" />
 
         <EditText
@@ -94,8 +88,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="fid"
-            android:hint="Full Mother Name"
             android:inputType="textPersonName" />
 
         <TextView
@@ -106,7 +98,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginTop="10dp"
             android:background="@android:color/transparent"
-            android:text="Date of Birth"
+            android:text="@string/date_of_birth"
             android:textColor="@color/colorPrimaryDark" />
 
         <EditText
@@ -114,8 +106,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="fid"
-            android:hint="Full Mother Name"
             android:inputType="textPersonName" />
 
         <TextView
@@ -124,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@android:color/transparent"
-            android:text="Gender"
+            android:text="@string/gender"
             android:textColor="@color/colorPrimaryDark" />
 
         <RadioGroup
@@ -154,10 +144,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@color/colorPrimaryDark"
             android:onClick="add"
-            android:text="Add"
-            android:textColor="@android:color/white" />
+            android:text="@string/add"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
 
 
     </LinearLayout>

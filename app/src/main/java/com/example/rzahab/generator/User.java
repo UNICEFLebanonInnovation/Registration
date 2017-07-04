@@ -11,6 +11,46 @@ import java.util.Map;
  */
 
 public class User {
+    private String first_name, father_name, last_name, mother_name,
+            first_name_equiv, father_name_equiv, last_name_equiv, mother_name_equiv, gender, dob, uid;
+    private Map<String, String> postParams;
+
+    public User(HashMap<String, String> userData) {
+        Class uClass = this.getClass();
+        postParams = new HashMap<>();
+
+        for (Map.Entry<String, String> entry : userData.entrySet()) {
+
+            String key = entry.getKey();
+            String value = entry.getValue();
+            postParams.put(key, value);
+
+            Field f = null;
+            try {
+                f = uClass.getDeclaredField(key);
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            }
+            f.setAccessible(true);
+
+            try {
+                f.set(this, "" + value);
+
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        Log.d("NewUser", this.toString());
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
     public String getFirst_name() {
         return first_name;
     }
@@ -51,39 +91,6 @@ public class User {
         return dob;
     }
 
-    private String first_name, father_name, last_name, mother_name,
-            first_name_equiv, father_name_equiv, last_name_equiv, mother_name_equiv, gender, dob;
-
-    private Map<String, String> postParams;
-
-    public User(HashMap<String, String> userData) {
-        Class uClass = this.getClass();
-        postParams = new HashMap<>();
-
-        for (Map.Entry<String, String> entry : userData.entrySet()) {
-
-            String key = entry.getKey();
-            String value = entry.getValue();
-            postParams.put(key, value);
-
-            Field f = null;
-            try {
-                f = uClass.getDeclaredField(key);
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
-            }
-            f.setAccessible(true);
-
-            try {
-                f.set(this, "" + value);
-
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-        Log.d("NewUser", this.toString());
-    }
-
     public String toString() {
         //Object u = new User();
         Class uClass = this.getClass();
@@ -100,7 +107,7 @@ public class User {
                 e.printStackTrace();
             }
         }
-        return this.first_name + " " + this.father_name + " " + this.last_name + " " + "";
+        return this.first_name + " " + this.father_name + " " + this.last_name;
     }
 
     public Map<String, String> asPost() {

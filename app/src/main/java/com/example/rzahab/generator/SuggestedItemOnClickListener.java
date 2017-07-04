@@ -36,7 +36,7 @@ public class SuggestedItemOnClickListener implements View.OnClickListener {
         int itemPosition = recyclerView.indexOfChild(v);
         String UID = itemsList.get((itemPosition)).getID();
 
-        Log.d("Listener", String.valueOf(itemPosition));
+        Log.d("Listener", "UID: " + UID);
 
         ((Generator) currentActivity.getApplication()).moveToKobo(currentActivity,UID);
     }

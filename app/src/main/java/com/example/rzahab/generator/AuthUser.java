@@ -9,13 +9,6 @@ import android.text.TextUtils;
  */
 
 public class AuthUser implements Parcelable {
-    private String email, password;
-
-    AuthUser(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-
     public static final Creator<AuthUser> CREATOR = new Creator<AuthUser>() {
         @Override
         public AuthUser createFromParcel(Parcel in) {
@@ -27,6 +20,17 @@ public class AuthUser implements Parcelable {
             return new AuthUser[size];
         }
     };
+    private String email, password;
+
+    AuthUser(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    public AuthUser(Parcel in) {
+        this.email = in.readString();
+        this.password = in.readString();
+    }
 
     public String getEmail() {
         return email;
@@ -64,11 +68,6 @@ public class AuthUser implements Parcelable {
         dest.writeString(this.email);
         dest.writeString(this.password);
         //dest.writeString(this.);
-    }
-
-    public AuthUser(Parcel in) {
-        this.email = in.readString();
-        this.password = in.readString();
     }
 
 
