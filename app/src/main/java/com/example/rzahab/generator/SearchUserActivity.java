@@ -1,5 +1,7 @@
 package com.example.rzahab.generator;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -23,17 +26,37 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class SearchUserActivity extends AppCompatActivity implements Serializable {
 
     Map<String, String> filled_fields;
     Generator app;
-
+    int day, month, year;
+    Button date_picker;
+    String dob = null;
     private TextView helloUserText;
     private String TAG;
     private boolean doubleBackToExitPressedOnce = false;
+    private Calendar calendar;
+    private DatePickerDialog.OnDateSetListener myDateListener = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0,
+                                      int arg1, int arg2, int arg3) {
+                    // TODO Auto-generated method stub
+                    // arg1 = year
+                    // arg2 = month
+                    // arg3 = day
+                    year = arg1;
+                    month = arg2;
+                    day = arg3;
+                    showDate(arg1, arg2 + 1, arg3);
+                }
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +67,42 @@ public class SearchUserActivity extends AppCompatActivity implements Serializabl
         app = ((Generator) this.getApplication());
         app.setUserData(null);
         app.authenticateUser(this);
+        calendar = Calendar.getInstance();
+
+        year = calendar.get(Calendar.YEAR);
+
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        date_picker = (Button) findViewById(R.id.date_picker);
+    }
+
+    private void showDate(int year, int month, int day) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.dob = String.format("%02d", day) + "" + String.format("%02d", month) + "" + year;
+
+        date_picker.setText(new StringBuilder().append(day).append("/")
+                .append(month).append("/").append(year));
+    }
+
+    @SuppressWarnings("deprecation")
+    public void setDate(View view) {
+        showDialog(999);
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        // TODO Auto-generated method stub
+        if (id == 999) {
+            return new DatePickerDialog(this,
+                    myDateListener, year, month, day);
+        }
+        return null;
     }
 
     public void showAll(View v) {
-        Intent i = new Intent(SearchUserActivity.this, ListUsersActivity.class);
+        Intent i = new Intent(SearchUserActivity.this, FilterUsersActivity.class);
         startActivity(i);
         finish();
     }
@@ -139,7 +194,13 @@ public class SearchUserActivity extends AppCompatActivity implements Serializabl
     }
 
     public boolean validateInput() {
+        Log.d("Verify","DOB: "+this.dob);
         filled_fields = new HashMap<>();
+        if (this.dob == null)
+            return false;
+        else {
+            filled_fields.put("dob", this.dob);
+        }
         EditText first_name_txt, last_name_txt, father_name_txt, mother_name_txt;
         first_name_txt = (EditText) findViewById(R.id.first_name);
         last_name_txt = (EditText) findViewById(R.id.last_name);
@@ -165,15 +226,11 @@ public class SearchUserActivity extends AppCompatActivity implements Serializabl
             required++;
         }
 
+
         return (required >= 3);
     }
 
     public HashMap<String, String> getUserData() {
-
-        DatePicker dob_dialog = (DatePicker) findViewById(R.id.dob);
-        String month = String.format("%02d", dob_dialog.getMonth() + 1);
-
-        String dob = String.format("%02d", dob_dialog.getDayOfMonth()) + "" + month + "" + dob_dialog.getYear();
 
         RadioGroup gender_group = (RadioGroup) findViewById(R.id.gender);
         int selectedGender = gender_group.getCheckedRadioButtonId();
@@ -183,7 +240,6 @@ public class SearchUserActivity extends AppCompatActivity implements Serializabl
         HashMap<String, String> userData = new HashMap<>();
 
         userData.putAll(filled_fields);
-        userData.put("dob", dob);
         userData.put("gender", gender);
 
         app.setUserData(userData);

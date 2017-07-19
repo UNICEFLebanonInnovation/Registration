@@ -23,12 +23,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".3"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
+            android:padding="10dp"
             android:text="@string/full_name"
             android:textColor="@android:color/black"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="normal" />
 
         <ImageView
@@ -43,12 +41,10 @@
             android:layout_height="wrap_content"
             android:layout_weight=".3"
             android:fontFamily="Open Sans "
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:text="Mother Name"
+            android:padding="10dp"
+            android:text="@string/mother_name"
             android:textColor="@android:color/black"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="normal" />
 
         <ImageView
@@ -62,12 +58,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".3"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:text="Father Name"
+            android:padding="10dp"
+            android:text="@string/father_name"
             android:textColor="@android:color/black"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="normal" />
 
         <ImageView

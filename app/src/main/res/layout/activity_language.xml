@@ -5,12 +5,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context="com.example.rzahab.generator.LanguageActivity">
+    tools:context=".LanguageActivity">
 
 
     <TextView
         android:id="@+id/radio_label"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@android:color/transparent"
@@ -29,16 +29,16 @@
         <RadioButton
             android:id="@+id/arabic"
             android:layout_height="0dp"
-            android:layout_weight=".5"
-            android:layout_width="wrap_content"
+            android:layout_weight="0.50"
+            android:layout_width="match_parent"
             android:checked="true"
             android:text="@string/arabic" />
 
         <RadioButton
             android:id="@+id/english"
             android:layout_height="0dp"
-            android:layout_weight=".5"
-            android:layout_width="wrap_content"
+            android:layout_weight="0.50"
+            android:layout_width="match_parent"
             android:text="@string/english" />
     </RadioGroup>
 

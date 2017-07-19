@@ -96,14 +96,12 @@ public class User {
         Class uClass = this.getClass();
         final Field[] fields = uClass.getFields();
 
-        for (int i = 0; i < fields.length; i++) {
+        for (Field field : fields) {
             try {
-                Field f = uClass.getDeclaredField(fields[i].getName());
+                Field f = uClass.getDeclaredField(field.getName());
                 String v = "" + f.get(this);
                 Log.d("USER", f + " = " + v);
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
+            } catch (NoSuchFieldException | IllegalAccessException e) {
                 e.printStackTrace();
             }
         }

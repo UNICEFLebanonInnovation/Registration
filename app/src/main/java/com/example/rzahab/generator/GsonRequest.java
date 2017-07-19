@@ -69,9 +69,7 @@ public class GsonRequest {
         try {
             method = currentActivity.getClass().getMethod(methodName, String.class);
             method.invoke(currentActivity, returnedJson);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();

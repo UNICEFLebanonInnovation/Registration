@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Log.d(TAG, "أ"+ " is : "+ ab.transliterateLetter("أ".charAt(0)));
         if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(MainActivity.this, ListUsersActivity.class));
+            startActivity(new Intent(MainActivity.this, SearchUserActivity.class));
             finish();
         }
 

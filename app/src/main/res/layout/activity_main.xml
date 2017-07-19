@@ -6,7 +6,7 @@
     android:layout_width="fill_parent"
     android:orientation="vertical"
     android:padding="@dimen/padding_main"
-    tools:context="com.example.rzahab.generator.MainActivity">
+    tools:context=".MainActivity">
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/signup_input_layout_email"

@@ -64,9 +64,7 @@ public class IDGen {
 
         BigInteger hashedToInt = new BigInteger(hashed, 16);
 
-        String name_hash = String.format("%0" + padding + "d", hashedToInt.mod(b_10000));
-
-        return name_hash;
+        return String.format("%0" + padding + "d", hashedToInt.mod(b_10000));
     }
 }
 

@@ -44,7 +44,7 @@ public class Generator extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        this.setRateThreshold(50);
+        this.setRateThreshold();
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         TAG = "MAIN";
         generatorURL = "https://id-gen.herokuapp.com/generate";
@@ -103,8 +103,8 @@ public class Generator extends Application {
         return rateThreshold;
     }
 
-    private void setRateThreshold(double rateThreshold) {
-        this.rateThreshold = rateThreshold;
+    private void setRateThreshold() {
+        this.rateThreshold = (double) 50;
     }
 
     public ArrayList<SuggestedUser> getSuggestedUsers() {
@@ -121,15 +121,15 @@ public class Generator extends Application {
         Toast.makeText(currentActivity, this.getResources().getString(R.string.id_copied) + UID, Toast.LENGTH_LONG).show();
         clipboard.setPrimaryClip(clip);
 
-        startNewActivity(currentActivity, "org.koboc.collect.android");
+        startNewActivity(currentActivity);
     }
 
-    public void startNewActivity(Context context, String packageName) {
-        Intent intent = context.getPackageManager().getLaunchIntentForPackage(packageName);
+    public void startNewActivity(Context context) {
+        Intent intent = context.getPackageManager().getLaunchIntentForPackage("org.koboc.collect.android");
         if (intent == null) {
             // Bring user to the market or let them choose an app?
             intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse("market://details?id=" + packageName));
+            intent.setData(Uri.parse("market://details?id=" + "org.koboc.collect.android"));
         }
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);

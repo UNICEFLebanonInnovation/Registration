@@ -125,7 +125,7 @@ public class SuggestionLibrary {
     }
 
     private void setLib() {
-        this.arabicLib = new HashMap<String, String>();
+        this.arabicLib = new HashMap<>();
         arabicLib.put("0600", " ");
         arabicLib.put("0601", " ");
         arabicLib.put("0602", " ");
@@ -383,8 +383,8 @@ public class SuggestionLibrary {
                 "۟", "۠", "ۡ", "ۢ", "ۣ", "ۤ", "ۥ", "ۦ", "ۧ", "ۨ", "۩", "۪", "۫", "۬", "ۭ", "ۮ", "ۯ", "۰", "۱", "۲", "۳", "۴", "۵", "۶",
                 "۷", "۸", "۹", "ۺ", "ۻ", "ۼ", "۽", "۾", "ۿ"};
 
-        for (int i = 0; i < letters.length; i++) {
-            Log.d("Convert", letters[i] + " -> " + transliterateLetter(letters[i].charAt(0)));
+        for (String letter : letters) {
+            Log.d("Convert", letter + " -> " + transliterateLetter(letter.charAt(0)));
         }
     }
 

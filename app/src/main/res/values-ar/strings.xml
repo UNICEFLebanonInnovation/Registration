@@ -1,112 +1,72 @@
 <resources>
     <string name="app_name"> مولد </string>
-        
     <string name="title_activity_login"> تسجيل الدخول </string>
-        
     <string name="auth_failed"> خطأ في المصادقة، يرجى إدخال بريد إلكتروني وكلمة مرور صالحين أو الاشتراك </string>
-        
     <string name="hint_password"> كلمة المرور </string>
-        
     <string name="btn_login"> تسجيل الدخول </string>
-        
     <string name="btn_link_to_login"> مسجل بالفعل. تسجيل الدخول !! </string>
-        
     <string name="btn_sign_up"> اشترك !! </string>
-        
     <string name="err_msg_email"> أدخل بريدا إلكترونيا صالحا. </string>
-        
     <string name="err_msg_required"> مطلوب !! </string>
-        
     <string name="err_msg_password"> أدخل كلمة مرور صالحة مع 6 أحرف كحد أدنى. </string>
-        
     <string name="btn_link_to_signup"> ليس لديك حساب، اشترك !! </string>
-        
     <string name="title_activity_user"> صفحة المستخدم </string>
-        
     <string name="hello"> مرحبا: </string>
-        
     <string name="btn_logout"> تسجيل الخروج </string>
-        
     <string name="btn_goto_list"> قائمة التحقق </string>
-        
     <string name="btn_submit"> بحث </string>
-        
     <string name="enter_listItem_text"> أدخل العنصر !! </string>
-        
-    <string name="gener_label"> اختيار الجنس </string>
-        
+    <string name="gender_label"> اختيار الجنس </string>
     <string name="female"> أنثى </string>
-        
     <string name="male"> ذكر </string>
-        
     <string name="all_deleted"> جميع المحذوفة !! </string>
-        
     <string name="are_you_sure"> هل تريد حذف ؟؟ </string>
-        
     <string name="dialog_single_button"> إنشاء </string>
-        
-    <string name="minimal_password"> كلمة المرور قصيرة جدا، أدخل 6 أحرف كحد أدنى! </string>
-        
+    <string name="minimum_password"> كلمة المرور قصيرة جدا، أدخل 6 أحرف كحد أدنى! </string>
     <string name="btn_sign_out"> الخروج </string>
-        
     <string name="title_activity_scrolling"> التمريرأكتيفيتي </string>
-        
     <string name="action_settings"> الإعدادات </string>
-        
     <string name="new_id"> معرف المستخدم الجديد هو: </string>
-        
     <string name="id_copied"> يتم نسخ المعرف الجديد إلى الحافظة الخاصة بك، وانقر على الزر للانتقال إلى نماذج كوبو </string>
-        
     <string name="go_to_kobo"> الانتقال إلى كوبو </string>
-        
     <string name="_1234"> 1234 </string>
-        
     <string name="full_name"> الاسم الكامل </string>
-        
     <string name="textview"> textview </string>
-        
     <string name="none_of_the_above"> لا شيء مما سبق؟ إنشاء مستخدم جديد </string>
-        
     <string name="bleu_border"> bleu_border </string>
-        
     <string name="exit_back"> الرجاء النقر على رجوع مرة أخرى للخروج </string>
-        
     <string name="error_saving"> تعذر حفظ البيانات </string>
-        
     <string name="error_all_info"> تأكد من تقديم جميع المعلومات </string>
-        
     <string name="back_search"> انقر مرة أخرى للعودة إلى البحث </string>
-        
-    <string name="recommended_users"> المستخدمون المقترحون: </string>
-        
+    <string name="suggested_users"> المستخدمون المقترحون: </string>
     <string name="start_b"><![CDATA[<b>]]></string>
     <string name="end_b"><![CDATA[</b>]]></string>
-        
     <string name="born_on"> ولدت في: </string>
-        
     <string name="slash"> / </string>
-        
     <string name="logout"> الخروج </string>
-        
     <string name="home"> الصفحة الرئيسية </string>
-        
     <string name="non_found"> ​​غير موجود </string>
-        
     <string name="find_user"> البحث عن مستخدم </string>
-    <string name="language">English/عربي</string>
-    <string name="pick_language">Pick Language</string>
-    <string name="english">English</string>
     <string name="switch_language"> لغة التبديل </string>
-        
+    <string name="language">English/عربي</string>
+    <string name="pick_language">اختر اللغة</string>
+    <string name="arabic">عربي</string>
+    <string name="english">English</string>
     <string name="first_name"> الاسم الأول </string>
-        
     <string name="last_name"> اسم العائلة </string>
-        
     <string name="mother_name"> اسم الأم </string>
-        
+    <string name="father_name">اسم الأب</string>
+    <string name="name">Name</string>
     <string name="date_of_birth"> تاريخ الميلاد </string>
-        
     <string name="gender"> الجنس </string>
-        
     <string name="add"> إضافة </string>
+    <string name = "back_to_search"> الرجوع إلى البحث </string>
+    <string name = "show_all"> إظهار الكل </string>
+    <string name = "pick_date"> اختيار تاريخ </string>
+    <string name = "chosen_date"> تاريخ الاختيار </string>
+    <string name = "clear_filter"> مسح الفلتر </string>
+    <string name = "any"> أي </string>
+    <string name = "filter_by_gender"> تصفية حسب الجنس </string>
+    <string name = "filter_date"> تصفية حسب التاريخ </string>
+    <string name = "email"> البريد الإلكتروني </string>
 </resources>

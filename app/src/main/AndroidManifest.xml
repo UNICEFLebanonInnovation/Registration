@@ -18,7 +18,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/find_user">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,8 +34,8 @@
         <activity android:name=".ListSuggestedActivity" />
         <activity android:name=".NewUserActivity" />
         <activity android:name=".PreviewActivity" />
-        <activity android:name=".LanguageActivity"></activity>
-        <activity android:name=".ListUsersActivity"></activity>
+        <activity android:name=".LanguageActivity" />
+        <activity android:name=".FilterUsersActivity" />
     </application>
 
 </manifest>

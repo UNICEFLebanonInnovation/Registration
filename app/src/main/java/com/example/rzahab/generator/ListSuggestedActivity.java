@@ -21,7 +21,6 @@ import static android.text.Html.fromHtml;
 public class ListSuggestedActivity extends AppCompatActivity {
 
     Generator app;
-    private String TAG;
     private RecyclerView mListItemsRecyclerView;
     private ListItemsAdapter mAdapter;
     private boolean doubleBackToExitPressedOnce = false;
@@ -32,7 +31,7 @@ public class ListSuggestedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_suggested);
 
-        TAG = this.getLocalClassName();
+        String TAG = this.getLocalClassName();
         app = ((Generator) this.getApplication());
         mListItemsRecyclerView = (RecyclerView) findViewById(R.id.listItem_recycler_view);
         mListItemsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -47,10 +46,10 @@ public class ListSuggestedActivity extends AppCompatActivity {
             genderTextView.setText(fromHtml(getString(R.string.suggested_users)
                     + getString(R.string.start_b) + gender + getString(R.string.end_b)));
 
-            TextView dobTextView = (TextView) findViewById(R.id.dobTextView);
+            //TextView dobTextView = (TextView) findViewById(R.id.dobTextView);
             assert dob != null;
-            dob = getString(R.string.start_b) + dob.substring(0, 2) + getString(R.string.slash) + dob.substring(2, 4) + getString(R.string.slash) + dob.substring(4) + getString(R.string.end_b);
-            dobTextView.setText(fromHtml(getString(R.string.born_on) + dob));
+            //dob = getString(R.string.start_b) + dob.substring(0, 2) + getString(R.string.slash) + dob.substring(2, 4) + getString(R.string.slash) + dob.substring(4) + getString(R.string.end_b);
+            //dobTextView.setText(fromHtml(getString(R.string.born_on) + dob));
         }
         updateUI(app.getSuggestedUsers());
 
